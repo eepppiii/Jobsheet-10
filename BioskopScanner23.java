@@ -13,25 +13,30 @@ public class BioskopScanner23 {
             System.out.println("3. Exit");
             System.out.print("Pilih menu: ");
             menu = sc.nextInt();
-            sc.nextLine(); 
-
+            sc.nextLine();
             switch (menu) {
                 case 1:
                     System.out.print("Masukkan Nama: ");
                     String nama = sc.nextLine();
-                    System.out.print("Masukkan Baris (1-4): ");
-                    int baris = sc.nextInt();
-                    System.out.print("Masukkan Kolom (1-2): ");
-                    int kolom = sc.nextInt();
-                    sc.nextLine();
 
-                    if (baris < 1 || baris > 4 || kolom < 1 || kolom > 2) {
-                        System.out.println("Nomor baris atau kolom tidak tersedia! Silakan coba lagi.");
-                    } else if (penonton[baris - 1][kolom - 1] != null) {
-                        System.out.println("Kursi sudah terisi oleh " + penonton[baris - 1][kolom - 1]);
-                    } else {
-                        penonton[baris - 1][kolom - 1] = nama;
-                        System.out.println("Data penonton berhasil dimasukkan!");
+                    int baris, kolom;
+                    while (true) {
+                        System.out.print("Masukkan Baris (1-4): ");
+                        baris = sc.nextInt();
+                        System.out.print("Masukkan Kolom (1-2): ");
+                        kolom = sc.nextInt();
+                        sc.nextLine();
+
+                        if (baris < 1 || baris > 4 || kolom < 1 || kolom > 2) {
+                            System.out.println("⚠️ Nomor baris atau kolom tidak tersedia! Silakan coba lagi.");
+                        } else if (penonton[baris - 1][kolom - 1] != null) {
+                            System.out.println("⚠️ Kursi sudah terisi oleh " + penonton[baris - 1][kolom - 1] + ".");
+                            System.out.println("Silakan pilih kursi lain!");
+                        } else {
+                            penonton[baris - 1][kolom - 1] = nama;
+                            System.out.println("✅ Data penonton berhasil dimasukkan!");
+                            break; 
+                        }
                     }
                     break;
 
@@ -47,7 +52,6 @@ public class BioskopScanner23 {
                     break;
 
                 case 3:
-                    // Keluar dari program
                     System.out.println("Terima kasih! Program selesai.");
                     break;
 
